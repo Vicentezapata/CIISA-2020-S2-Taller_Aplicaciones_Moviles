@@ -36,8 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         btn_register_layout = (Button) findViewById(R.id.btn_register_layout);
 
-
-
         //EVENTO ONCLICK BOTON
         btn_register_layout.setOnClickListener(new View.OnClickListener() {
             @Override
