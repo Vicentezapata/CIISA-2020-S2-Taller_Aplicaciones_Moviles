@@ -70,27 +70,29 @@
                 android:text="@string/registro_genero" />
 
             <RadioGroup
+                android:id="@+id/rdgGender"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="fill_vertical"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/rdbFemenino"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Femenino" />
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/rdbMasc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Masculino" />
 
                 <RadioButton
-                    android:id="@+id/radioButton3"
+                    android:id="@+id/rdbPrivado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checked="true"
                     android:text="Privado" />
             </RadioGroup>
 

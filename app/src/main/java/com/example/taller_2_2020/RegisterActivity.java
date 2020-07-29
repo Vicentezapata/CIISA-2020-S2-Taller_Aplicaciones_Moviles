@@ -3,11 +3,14 @@ package com.example.taller_2_2020;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -16,16 +19,19 @@ import java.util.Calendar;
 
 public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout til_date,til_rut,til_nombre,til_apellido,til_edad,til_pass,til_rpass;
+    private RadioGroup rdgGender;
+    private RadioButton rdbGender;
     private int mYear, mMonth, mDay;
-    private String fechaNac,rut,nombre,apellido,edad,pass,rpass;
+    private String fechaNac,rut,nombre,apellido,edad,pass,rpass,gender;
     private Button btn_register_layout;
 
     @Override
+    //ESTE METODO SE EJECUTA AL CREAR LA INTERFAZ
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        // Referencias WIDGETS
+        // Referencias WIDGETS es lo mismo que el getElementById de JS para HTML
         til_date = (TextInputLayout) findViewById(R.id.til_fechaNac);
         til_rut = (TextInputLayout) findViewById(R.id.til_rut);
         til_nombre = (TextInputLayout) findViewById(R.id.til_nombre);
@@ -35,11 +41,16 @@ public class RegisterActivity extends AppCompatActivity {
         til_rpass = (TextInputLayout) findViewById(R.id.til_rpPassword);
 
         btn_register_layout = (Button) findViewById(R.id.btn_register_layout);
+        rdgGender = (RadioGroup) findViewById(R.id.rdgGender);
 
         //EVENTO ONCLICK BOTON
         btn_register_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Radio Button
+                int selectedIdGender = rdgGender.getCheckedRadioButtonId();
+                rdbGender = (RadioButton) findViewById(selectedIdGender);
+
                 // POBLAR VALORES
                 fechaNac = til_date.getEditText().getText().toString();
                 rut = til_rut.getEditText().getText().toString();
@@ -48,7 +59,35 @@ public class RegisterActivity extends AppCompatActivity {
                 edad = til_edad.getEditText().getText().toString();
                 pass = til_pass.getEditText().getText().toString();
                 rpass = til_rpass.getEditText().getText().toString();
-                Toast.makeText(RegisterActivity.this, "fechaNac:"+fechaNac+",rut:"+rut+",nombre:"+nombre+",apellido:"+apellido+",edad:"+edad+",pass:"+pass+",rpass:"+rpass, Toast.LENGTH_SHORT).show();
+                gender = rdbGender.getText().toString();
+
+
+                //MOSTRAR DATOS EN PANTALLA
+                //Toast.makeText(RegisterActivity.this, "fechaNac:"+fechaNac+",rut:"+rut+",nombre:"+nombre+",apellido:"+apellido+",edad:"+edad+",pass:"+pass+",rpass:"+rpass+",gender:"+gender, Toast.LENGTH_SHORT).show();
+
+
+                //PROCEDEMOS A LA VALIDACION DE CAMPOS
+                //VALIDACION TRADICIONAL
+                if(nombre.equals("")){
+                    til_nombre.setError("Nombre invalido");
+                }
+                else{
+                    til_nombre.setError(null);
+                }
+
+                //VALIDACION CON CLASE
+                if(validarDatos() == 0){
+                    //ACA COLOCAREMOS CODIGO PARA INSERTAR EN SQLITE
+
+                    //EJECUCION PARA CAMBIAR DE LAYOUT
+                    Intent intent = new Intent(view.getContext(),MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(RegisterActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(RegisterActivity.this, "Estimado uno o mas de los campos es invalido favor revisar", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         //EVENTO ONCLICK CALENDARIO
@@ -75,5 +114,96 @@ public class RegisterActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+    }
+    //VALIDACION DE DATOS
+    private int validarDatos(){
+        Validate validate = new Validate();
+        String fechaNac = til_date.getEditText().getText().toString();
+        String rut = til_rut.getEditText().getText().toString();
+        String nombre = til_nombre.getEditText().getText().toString();
+        String apellido = til_apellido.getEditText().getText().toString();
+        String edad = til_edad.getEditText().getText().toString();
+        String pass = til_pass.getEditText().getText().toString();
+        String rpass = til_rpass.getEditText().getText().toString();
+        String gender = rdbGender.getText().toString();
+        int contador = 0;
+        //VALIDAMOS LA FECHA
+        if (validate.validarNulo(fechaNac)) {
+            til_date.setError("Fecha inválida");
+            contador++;
+        }
+        else{
+            til_date.setError(null);
+        }
+        //VALIDAMOS EL RUT
+        if (validate.validarNulo(rut)) {
+            til_rut.setError("rut inválido");
+            contador++;
+        }
+        else{
+            til_rut.setError(null);
+        }
+        //VALIDAMOS EL NOMBRE
+        if (validate.validarNulo(nombre)) {
+            til_nombre.setError("nombre inválido");
+            contador++;
+        }
+        else{
+            til_nombre.setError(null);
+        }
+        //VALIDAMOS EL apellido
+        if (validate.validarNulo(apellido)) {
+            til_apellido.setError("apellido inválido");
+            contador++;
+        }
+        else{
+            til_apellido.setError(null);
+        }
+        //VALIDAMOS EL edad
+        if (validate.validarNulo(edad)) {
+            til_edad.setError("edad inválido");
+            contador++;
+        }
+        else{
+            til_edad.setError(null);
+        }
+        //VALIDAMOS EL pass
+        if (validate.validarNulo(pass)) {
+            til_pass.setError("pass inválido");
+            contador++;
+        }
+        else{
+            til_pass.setError(null);
+            //VALIDAMOS claves iguales
+            if (pass.equals(rpass)) {
+                til_pass.setError(null);
+                til_rpass.setError(null);
+            }
+            else{
+                til_pass.setError("Las claves deben ser iguales");
+                til_rpass.setError("Las claves deben ser iguales");
+                contador++;
+            }
+        }
+        //VALIDAMOS EL rpass
+        if (validate.validarNulo(rpass)) {
+            til_rpass.setError("rpass inválido");
+            contador++;
+        }
+        else{
+            til_rpass.setError(null);
+            //VALIDAMOS claves iguales
+            if (pass.equals(rpass)) {
+                til_pass.setError(null);
+                til_rpass.setError(null);
+            }
+            else{
+                til_pass.setError("Las claves deben ser iguales");
+                til_rpass.setError("Las claves deben ser iguales");
+                contador++;
+            }
+        }
+        return contador;
+
     }
 }
