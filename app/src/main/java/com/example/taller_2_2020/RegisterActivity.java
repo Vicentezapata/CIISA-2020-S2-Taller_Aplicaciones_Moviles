@@ -15,7 +15,9 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout til_date,til_rut,til_nombre,til_apellido,til_edad,til_pass,til_rpass;
@@ -116,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
     //VALIDACION DE DATOS
-    private int validarDatos(){
+    private int validarDatos()  {
         Validate validate = new Validate();
         String fechaNac = til_date.getEditText().getText().toString();
         String rut = til_rut.getEditText().getText().toString();
@@ -129,39 +131,81 @@ public class RegisterActivity extends AppCompatActivity {
         int contador = 0;
         //VALIDAMOS LA FECHA
         if (validate.validarNulo(fechaNac)) {
-            til_date.setError("Fecha inválida");
+            til_date.setError("Campo Fecha Requerido");
             contador++;
         }
         else{
+
+            //Toast.makeText(RegisterActivity.this, "date:"+dateFormat, Toast.LENGTH_SHORT).show();
             til_date.setError(null);
+            //VALIDAMOS QUE LA FECHA NO SUPERE A LA ACTUAL
+            if (validate.validarFechaAlDia(fechaNac)) {
+                til_date.setError(null);
+            }
+            else{
+                til_date.setError("La fecha ingresada no debe superar la actual");
+                contador++;
+            }
         }
         //VALIDAMOS EL RUT
         if (validate.validarNulo(rut)) {
-            til_rut.setError("rut inválido");
+            til_rut.setError("Campo Rut Requerido");
             contador++;
         }
         else{
             til_rut.setError(null);
+            //VALIDAMOS QUE EL RUT SEA VALIDO
+            if (validate.validarFormatoRut(rut)) {
+                til_rut.setError(null);
+                if(validate.validarRut(rut)){
+                    til_rut.setError(null);
+                }
+                else{
+                    til_rut.setError("Rut invalido");
+                    contador++;
+                }
+
+            }
+            else{
+                til_rut.setError("El el rut debe tener el formato 123456789-0");
+                contador++;
+            }
         }
         //VALIDAMOS EL NOMBRE
         if (validate.validarNulo(nombre)) {
-            til_nombre.setError("nombre inválido");
+            til_nombre.setError("Campo Nombre Requerido");
             contador++;
         }
         else{
             til_nombre.setError(null);
+            //VALIDAMOS QUE EL NOMBRE SEA VALIDO
+            if (validate.validarNombre(nombre)) {
+                til_nombre.setError(null);
+            }
+            else{
+                til_nombre.setError("El el nombre no debe contener numeros o caracteres especiales");
+                contador++;
+            }
         }
         //VALIDAMOS EL apellido
         if (validate.validarNulo(apellido)) {
-            til_apellido.setError("apellido inválido");
+            til_apellido.setError("Campo Apellido Requerido");
             contador++;
         }
         else{
             til_apellido.setError(null);
+            //VALIDAMOS QUE EL APELLIDO SEA VALIDO
+            if (validate.validarNombre(apellido)) {
+                til_apellido.setError(null);
+            }
+            else{
+                til_apellido.setError("El el apellido no debe contener numeros o caracteres especiales");
+                contador++;
+            }
         }
         //VALIDAMOS EL edad
         if (validate.validarNulo(edad)) {
-            til_edad.setError("edad inválido");
+            til_edad.setError("Campo Edad Requerido");
             contador++;
         }
         else{
@@ -169,7 +213,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
         //VALIDAMOS EL pass
         if (validate.validarNulo(pass)) {
-            til_pass.setError("pass inválido");
+            til_pass.setError("Campo Pass Requerido");
             contador++;
         }
         else{
@@ -187,7 +231,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
         //VALIDAMOS EL rpass
         if (validate.validarNulo(rpass)) {
-            til_rpass.setError("rpass inválido");
+            til_rpass.setError("Campo rpass Requerido");
             contador++;
         }
         else{

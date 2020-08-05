@@ -9,6 +9,7 @@
     <ScrollView
         android:layout_width="333dp"
         android:layout_height="616dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline">
@@ -116,8 +117,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/registro_fechaNac"
                     android:focusableInTouchMode="false"
+                    android:hint="@string/registro_fechaNac"
                     android:inputType="date" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -160,7 +161,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="57dp" />
+        app:layout_constraintGuide_begin="25dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
