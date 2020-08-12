@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -72,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "rut:"+rut+",pass:"+pass, Toast.LENGTH_SHORT).show();
 
 
-
-
                 //VALIDACION CON CLASE
                 if(validarDatos() == 0){
                     //ACA COLOCAREMOS CODIGO PARA LEER DATO DE SQLITE
@@ -92,12 +92,17 @@ public class MainActivity extends AppCompatActivity {
                         sharedEditor.clear().commit();
                     }
 
-                    //EJECUCION PARA CAMBIAR DE LAYOUT
-                    Intent intent = new Intent(view.getContext(),UserDashBoard.class);
-                    startActivity(intent);
-                    //SE GENERA FLAG PARA IMPEDIR QUE EL USUARIO PUEDA RETROCEDER
-                    //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    Toast.makeText(MainActivity.this, "Login exitoso", Toast.LENGTH_SHORT).show();
+                    if(validarCredenciales(rut,pass)){
+                        //EJECUCION PARA CAMBIAR DE LAYOUT
+                        Intent intent = new Intent(view.getContext(),UserDashBoard.class);
+                        startActivity(intent);
+                        //SE GENERA FLAG PARA IMPEDIR QUE EL USUARIO PUEDA RETROCEDER
+                        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        Toast.makeText(MainActivity.this, "Login exitoso", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this, "Rut o Contraña incorrecta", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else {
                     //Toast.makeText(MainActivity.this, "Estimado uno o mas de los campos es invalido favor revisar", Toast.LENGTH_SHORT).show();
@@ -108,6 +113,21 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    //LOGIN SQLITE
+    private boolean validarCredenciales(String rut,String pass){
+        boolean flag = false;
+        DBhelper dBhelper = new DBhelper(this,"DataBase_CIISA",null,1);
+        SQLiteDatabase db = dBhelper.getReadableDatabase();
+        if(db != null){
+            Cursor cr = db.rawQuery("SELECT rut,contrasena FROM tbl_user WHERE rut='"+rut+"' AND contrasena='"+pass+"'",null);
+            int filas = cr.getCount();
+            flag = filas > 0;
+        }
+        return flag;
+    }
+
+
+
     //VALIDACION DE DATOS
     private int validarDatos()  {
         Validate validate = new Validate();

@@ -3,7 +3,9 @@ package com.example.taller_2_2020;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -80,11 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
                 //VALIDACION CON CLASE
                 if(validarDatos() == 0){
                     //ACA COLOCAREMOS CODIGO PARA INSERTAR EN SQLITE
-
-                    //EJECUCION PARA CAMBIAR DE LAYOUT
-                    Intent intent = new Intent(view.getContext(),MainActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(RegisterActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                    insertarUsuario(rut,nombre,apellido,gender,edad,fechaNac,pass);
                 }
                 else {
                     Toast.makeText(RegisterActivity.this, "Estimado uno o mas de los campos es invalido favor revisar", Toast.LENGTH_SHORT).show();
@@ -117,6 +115,37 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+    //METODO DE INSERTAR DATO EN DB
+    public void insertarUsuario(String rut,String nombre,String apellido,String genero,String edad, String fecha_nac,String contrasena){
+        DBhelper dBhelper = new DBhelper(this,"DataBase_CIISA",null,1);
+        //ORM
+        SQLiteDatabase db = dBhelper.getWritableDatabase();
+        if(db!=null){
+            //CREAMOS UN OBJETO TEMPORAL PARA INSERTAR DATOS
+            ContentValues cv = new ContentValues();
+            cv.put("rut",rut);
+            cv.put("nombre",nombre);
+            cv.put("apellido",apellido);
+            cv.put("genero",genero);
+            cv.put("apellido",apellido);
+            cv.put("edad",edad);
+            cv.put("fecha_nac",fecha_nac);
+            cv.put("contrasena",contrasena);
+
+            long nFilas = db.insert("tbl_user",null,cv);
+            if(nFilas > 0){
+                Intent intent = new Intent(this,MainActivity.class);
+                Toast.makeText(this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(this, "Error al registrar", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
     //VALIDACION DE DATOS
     private int validarDatos()  {
         Validate validate = new Validate();
