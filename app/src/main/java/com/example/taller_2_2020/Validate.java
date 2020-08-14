@@ -91,5 +91,6 @@ public class Validate {
         }
         return validacion;
     }
+    //METODOS PROPIOS
 
 }

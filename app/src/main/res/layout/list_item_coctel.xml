@@ -52,4 +52,5 @@
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/imgCoct"
         app:layout_constraintTop_toTopOf="@+id/tvNameCoct" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
