@@ -13,12 +13,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.tiper.MaterialSpinner;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class NewCoctel extends AppCompatActivity {
     private Spinner spBase1,spBase2,spJugo1,spJugo2;
+    //private MaterialSpinner spBase1,spBase2,spJugo1,spJugo2; //MATERIAL SPINNER
     private TextInputLayout tilNomCoct;
     private List<String> baseCoctel,basesJugo;
     private Button btnInsertar;
@@ -35,6 +37,7 @@ public class NewCoctel extends AppCompatActivity {
         spJugo2 = findViewById(R.id.spJugo2);
         tilNomCoct = findViewById(R.id.til_nom_coct);
         btnInsertar = findViewById(R.id.btnInsertar);
+
 
         //LISTADO DE COCTELES
         baseCoctel = new ArrayList<String>();

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Taller_2_2020</string>
+    <!-- INTERFAZ REGISTRO  -->
+    <string name="registro_titulo">Register</string>
+    <string name="registro_rut">Rut</string>
+    <string name="registro_nombre">Name</string>
+    <string name="registro_apellido">Surname</string>
+    <string name="registro_genero">Select a gender</string>
+    <string name="registro_edad">Edad</string>
+    <string name="registro_fechaNac">Fecha Nacimiento</string>
+    <string name="registro_btn_registrarse">Register</string>
+    <!-- INTERFAZ LOGIN  -->
+    <string name="login_titulo">Welcome</string>
+    <string name="login_btn_login">Iniciar Sesión</string>
+    <string name="login_btn_registrarse">Registrarse</string>
+    <!-- ERRORES  -->
+    <!-- GLOBALES  -->
+    <string name="global_rut">Rut</string>
+    <string name="global_password">Password</string>
+    <string name="global_rpassword">Repeat password</string>
+
+</resources>

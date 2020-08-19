@@ -5,19 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NewCoctel">
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="352dp" />
+        app:layout_constraintGuide_end="16dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="55dp" />
+        app:layout_constraintGuide_begin="16dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -34,26 +35,51 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_nom_coct"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre Cóctel" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tvBaseCoct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
         android:text="Base Alcohólica Coctel"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/til_nom_coct" />
 
+    <!-- CLASSIC SPINNER-->
     <Spinner
         android:id="@+id/spBasesCoct"
         android:layout_width="0dp"
-        android:layout_height="29dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/tvBaseCoct2"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/tvBaseCoct" />
+
+    <!--MaterialSpinner
+    <com.tiper.MaterialSpinner
+        android:id="@+id/spBasesCoct"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintBottom_toTopOf="@+id/tvBaseCoct2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tvBaseCoct"
+        android:hint="Jugo 1" />-->
+
     <TextView
         android:id="@+id/tvBaseCoct2"
         android:layout_width="wrap_content"
@@ -64,6 +90,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/spBasesCoct" />
 
+    <!-- CLASSIC SPINNER-->
     <Spinner
         android:id="@+id/spiBasesCoct2"
         android:layout_width="0dp"
@@ -72,6 +99,19 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/tvBaseCoct2" />
+
+    <!--MaterialSpinner
+    <com.tiper.MaterialSpinner
+        android:id="@+id/spiBasesCoct2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintBottom_toTopOf="@+id/tvJugo1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tvBaseCoct2"
+        android:hint="Jugo 1" />-->
+
     <TextView
         android:id="@+id/tvJugo1"
         android:layout_width="wrap_content"
@@ -81,6 +121,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/spiBasesCoct2" />
 
+    <!-- CLASSIC SPINNER-->
     <Spinner
         android:id="@+id/spJugo1"
         android:layout_width="0dp"
@@ -89,6 +130,19 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/tvJugo1" />
+
+    <!--MaterialSpinner
+    <com.tiper.MaterialSpinner
+        android:id="@+id/spJugo1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintBottom_toTopOf="@+id/tvJugo1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tvJugo1"
+        android:hint="Jugo 1" />-->
+
     <TextView
         android:id="@+id/tvJugo2"
         android:layout_width="wrap_content"
@@ -97,22 +151,25 @@
         app:layout_constraintBottom_toTopOf="@+id/spJugo2"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/spJugo1" />
-
+    <!-- CLASSIC SPINNER-->
     <Spinner
         android:id="@+id/spJugo2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/tvNomCoct"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/tvJugo2" />
-    <TextView
-        android:id="@+id/tvNomCoct"
-        android:layout_width="wrap_content"
+
+    <!--MaterialSpinner
+    <com.tiper.MaterialSpinner
+        android:id="@+id/spJugo2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Nombre Coctel"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/spJugo2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvJugo2"
+        android:hint="Jugo 1" />-->
 
     <Button
         android:id="@+id/btnInsertar"
@@ -121,30 +178,16 @@
         android:text="Insertar"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/til_nom_coct"
-        app:layout_constraintVertical_bias="0.829" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_nom_coct"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/tvNomCoct">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nombre Cóctel" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/spJugo2"
+        app:layout_constraintVertical_bias="0.666" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="541dp" />
+        app:layout_constraintGuide_end="190dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

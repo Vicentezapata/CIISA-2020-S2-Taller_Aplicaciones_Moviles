@@ -16,7 +16,10 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }//MATERIAL SPINNER
     }
+
+
 }
 
 task clean(type: Delete) {

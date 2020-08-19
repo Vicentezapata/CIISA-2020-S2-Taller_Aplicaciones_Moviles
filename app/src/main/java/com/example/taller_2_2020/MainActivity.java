@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     //ACA COLOCAREMOS CODIGO PARA LEER DATO DE SQLITE
                     //VALIDAMOS EL ESTADO DEL SWITCH DE LA INTERFAZ
                     if(swRememberUser.isChecked()){
-                        //ALMACENAR VARIABLES
+                        //ALMACENAR VARIABLES EN SAHRED PREFERENCES
                         sharedEditor.putString("rutUser",rut);
                         //ESTE METODO ESPERA A QUE GUARDE LA LLAVE Y FLUJO SIGUE
                         sharedEditor.commit();
@@ -119,7 +119,20 @@ public class MainActivity extends AppCompatActivity {
         DBhelper dBhelper = new DBhelper(this,"DataBase_CIISA",null,1);
         SQLiteDatabase db = dBhelper.getReadableDatabase();
         if(db != null){
-            Cursor cr = db.rawQuery("SELECT rut,contrasena FROM tbl_user WHERE rut='"+rut+"' AND contrasena='"+pass+"'",null);
+            Cursor cr = db.rawQuery("SELECT * FROM tbl_user WHERE rut='"+rut+"' AND contrasena='"+pass+"'",null);
+            if(cr.moveToFirst()){
+                do{
+                    //ALMACENAR VARIABLES EN SAHRED PREFERENCES
+                    sharedEditor.putString("idUser",cr.getString(0));//ID USER
+                    sharedEditor.putString("rutUser",cr.getString(1));//RUT USER
+                    sharedEditor.putString("nombreUser",cr.getString(2));//NOMBRE USER
+                    sharedEditor.putString("apellidoUser",cr.getString(3));//APELLIDO USER
+                    //ESTE METODO ESPERA A QUE GUARDE LA LLAVE Y FLUJO SIGUE
+                    sharedEditor.commit();
+                    //ESTE METODONO ESPERA QUE SE ALLMACENE LA VARIABLE ES ASINCRONO
+                    sharedEditor.apply();
+                }while(cr.moveToNext());
+            }
             int filas = cr.getCount();
             flag = filas > 0;
         }

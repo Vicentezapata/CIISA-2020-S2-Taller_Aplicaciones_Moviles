@@ -11,14 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="352dp" />
+        app:layout_constraintGuide_end="16dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="55dp" />
+        app:layout_constraintGuide_begin="16dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -32,7 +32,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="688dp" />
+        app:layout_constraintGuide_end="16dp" />
+    <TextView
+        android:id="@+id/nameUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre usuario"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
 
     <TextView
         android:id="@+id/textView3"
@@ -40,95 +49,18 @@
         android:layout_height="wrap_content"
         android:text="Buscar Coctel"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
-
-
-
-    <TextView
-        android:id="@+id/tvBaseCoct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:text="Base Alcohólica Coctel"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
-
-    <Spinner
-        android:id="@+id/spBasesCoct"
-        android:layout_width="0dp"
-        android:layout_height="29dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvBaseCoct2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/tvBaseCoct" />
-    <TextView
-        android:id="@+id/tvBaseCoct2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Base Alcohólica Coctel 2"
-        app:layout_constraintBottom_toTopOf="@+id/spiBasesCoct2"
-
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/spBasesCoct" />
-
-    <Spinner
-        android:id="@+id/spiBasesCoct2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/tvJugo1"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/tvBaseCoct2" />
-    <TextView
-        android:id="@+id/tvJugo1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jugo 1"
-        app:layout_constraintBottom_toTopOf="@+id/spJugo1"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/spiBasesCoct2" />
-
-    <Spinner
-        android:id="@+id/spJugo1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/tvJugo1"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/tvJugo1" />
-    <TextView
-        android:id="@+id/tvJugo2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jugo 2"
-        app:layout_constraintBottom_toTopOf="@+id/spJugo2"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/spJugo1" />
-
-    <Spinner
-        android:id="@+id/spJugo2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/tvNomCoct"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/tvJugo2" />
-    <TextView
-        android:id="@+id/tvNomCoct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nombre Coctel"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/spJugo2" />
+        app:layout_constraintTop_toBottomOf="@+id/nameUser" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_nom_coct"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="60dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/tvNomCoct">
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -136,12 +68,141 @@
             android:hint="Nombre Cóctel" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline8"
+    <TextView
+        android:id="@+id/tvBaseCoct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="378dp" />
+        android:text="Base Alcohólica Coctel"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/til_nom_coct"
+        android:visibility="gone" />
+
+    <!-- CLASSIC SPINNER-->
+    <Spinner
+        android:id="@+id/spBasesCoct"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:dropDownWidth="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvBaseCoct2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tvBaseCoct"
+        android:visibility="gone" />
+
+    <!--MaterialSpinner
+    <com.tiper.MaterialSpinner
+        android:id="@+id/spBasesCoct"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintBottom_toTopOf="@+id/tvBaseCoct2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tvBaseCoct"
+        android:hint="Jugo 1" />-->
+
+    <TextView
+        android:id="@+id/tvBaseCoct2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Base Alcohólica Coctel 2"
+        android:visibility="gone"
+
+        app:layout_constraintBottom_toTopOf="@+id/spiBasesCoct2"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/spBasesCoct" />
+
+    <!-- CLASSIC SPINNER-->
+
+    <!--MaterialSpinner
+    <com.tiper.MaterialSpinner
+        android:id="@+id/spiBasesCoct2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintBottom_toTopOf="@+id/tvJugo1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tvBaseCoct2"
+        android:hint="Jugo 1" />-->
+
+    <Spinner
+        android:id="@+id/spiBasesCoct2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:dropDownWidth="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvJugo1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tvBaseCoct2"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvJugo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jugo 1"
+        app:layout_constraintBottom_toTopOf="@+id/spJugo1"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/spiBasesCoct2"
+        android:visibility="gone" />
+
+    <!-- CLASSIC SPINNER-->
+    <Spinner
+        android:id="@+id/spJugo1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:dropDownWidth="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvJugo1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tvJugo1"
+        android:visibility="gone" />
+
+    <!--MaterialSpinner
+    <com.tiper.MaterialSpinner
+        android:id="@+id/spJugo1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintBottom_toTopOf="@+id/tvJugo1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tvJugo1"
+        android:hint="Jugo 1" />-->
+
+    <TextView
+        android:id="@+id/tvJugo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jugo 2"
+        app:layout_constraintBottom_toTopOf="@+id/spJugo2"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/spJugo1"
+        android:visibility="gone" />
+    <!-- CLASSIC SPINNER-->
+    <Spinner
+        android:id="@+id/spJugo2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:dropDownWidth="match_parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tvJugo2"
+        android:visibility="gone" />
+
+    <!--MaterialSpinner
+    <com.tiper.MaterialSpinner
+        android:id="@+id/spJugo2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tvJugo2"
+        android:hint="Jugo 1" />-->
+
+
 
     <ListView
         android:id="@+id/lvRegistros"
@@ -150,19 +211,19 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+        app:layout_constraintTop_toBottomOf="@+id/btnBuscar" >
+
+    </ListView>
 
     <Button
         android:id="@+id/btnBuscar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Buscar"
-        app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/til_nom_coct"
-        app:layout_constraintVertical_bias="0.829" />
+        app:layout_constraintTop_toBottomOf="@+id/spJugo2" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
@@ -175,6 +236,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <Button
+        android:id="@+id/btnFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filtros"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toEndOf="@+id/btnBuscar"
+        app:layout_constraintTop_toBottomOf="@+id/til_nom_coct" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
